@@ -1,0 +1,11 @@
+[Unit]
+Description=Software Radio System's light-weight EPC implementation
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/isrepc /etc/isrran/epc.conf
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

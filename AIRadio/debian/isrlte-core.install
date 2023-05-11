@@ -1,0 +1,3 @@
+usr/lib/*/libisrran_rf.so*
+usr/share/isrran
+usr/bin/isrran_install_configs.sh

@@ -1,0 +1,103 @@
+Source: isrran
+Section: universe/misc
+Priority: optional
+Maintainer: isrRAN Packagers <packagers@softwareradiosystems.com>
+Build-Depends:
+    debhelper (>= 9),
+    dh-exec,
+    cmake,
+    build-essential,
+    libfftw3-dev,
+    libmbedtls-dev,
+    libboost-program-options-dev,
+    libconfig++-dev,
+    libsctp-dev,
+    libuhd-dev,
+    uhd-host,
+    txt2man
+Standards-Version: 4.2.1
+Homepage: http://www.softwareradiosystems.com
+Vcs-Git: https://github.com/isrRAN/isrRAN.git
+Vcs-Browser: https://github.com/isrRAN/isrRAN/
+
+Package: isrran-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         isrran-core:any (= ${binary:Version})
+Breaks: isrlte (<= 19.03-0ubuntu1)
+Replaces: isrlte (<= 19.03-0ubuntu1)
+Description: Static libraries and headers for isrran
+ This software allows you to run a full end-to-end, open-source 4G/5G system.
+ It contains a UE, eNB and EPC implementation.
+ .
+ This package contains the development files - static libraries and headers
+
+Package: isrran
+Architecture: all
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         isrenb       (>= ${source:Version}), isrenb (<< ${source:Upstream-Version}.0~),
+         isrue        (>= ${source:Version}), isrue  (<< ${source:Upstream-Version}.0~),
+         isrepc       (>= ${source:Version}), isrepc (<< ${source:Upstream-Version}.0~)
+Description: LTE software suite for software defined radios (metapackage)
+ This software allows you to run a full end-to-end, open-source LTE system.
+ It contains a UE, eNB and EPC implementation.
+ .
+ This package installs all isrRAN components.
+
+Package: isrenb
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         isrran-core (= ${binary:Version})
+Breaks: isrlte (<= 19.03-0ubuntu1)
+Replaces: isrlte (<= 19.03-0ubuntu1)
+Description: Complete SDR LTE eNodeB application
+ This software allows you to run a full end-to-end, open-source LTE system.
+ It contains a UE, eNB and EPC implementation.
+ .
+ This package contains isrENB only. For running a full network, a core network
+ component, such as isrEPC, is needed.
+
+Package: isrepc
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         isrran-core (= ${binary:Version})
+Recommends: isrenb
+Breaks: isrepc (<= 19.03-0ubuntu1)
+Replaces: isrepc (<= 19.03-0ubuntu1)
+Description: Light-weight LTE core network implementation
+ This software allows you to run a full end-to-end, open-source LTE system.
+ It contains a UE, eNB and EPC implementation.
+ .
+ This package contains a light-weight LTE core network implementation with MME, HSS and S/P-GW.
+
+Package: isrran-core
+Architecture: any
+Multi-Arch: allowed
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Breaks: isrlte-core (<= 19.03-0ubuntu1)
+Replaces: isrlte-core (<= 19.03-0ubuntu1)
+Description: Common files for isrRAN
+ This software allows you to run a full end-to-end, open-source 4G/5G system.
+ It contains a UE, eNB and EPC implementation.
+ .
+ This package contains the common files for isrenb, isrue and isrepc.
+
+Package: isrue
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         isrran-core (= ${binary:Version})
+Breaks: isrue (<= 19.03-0ubuntu1)
+Replaces: isrue (<= 19.03-0ubuntu1)
+Description: User Equipment implementation for LTE
+ This software enables using a software defined radio as the user equipment
+ connecting to an LTE network.
+ .
+ isrUE provides a complete SDR LTE UE application featuring all layers from PHY to IP.

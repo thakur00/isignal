@@ -1,0 +1,6 @@
+Template: isrran/install_configs_question
+Type: boolean
+Default: true
+Description: Install configs?
+ This installs the default isrRAN configuration files to the user's
+ home directory (~/.config/isrran) but keeps any existing config files.
